@@ -676,7 +676,15 @@ window.writebetter = (function () {
 					
 					return;
 				
-				} ; 
+				}; 
+				if ("ga" in window) {
+				    tracker = ga.getAll()[0];
+				    if (tracker) {
+					tracker.set("page", '/word-example/'+keyword.split(" ").join("_"));
+					tracker.send("pageview");
+				    }
+				}
+				
 				
 				alltxt=request.responseText;
 				alltxt=writebetter.replaceAll(alltxt, "{{", "");
